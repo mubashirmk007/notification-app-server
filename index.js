@@ -1,8 +1,9 @@
 import { Server } from "socket.io"; 
-
+import dotenv from 'dotenv'
+dotenv.config()
 const io = new Server({
   cors: {
-    origin: "http://localhost:3000",
+    origin: "*",
   },
 });
 
@@ -59,4 +60,5 @@ io.on("connection", (socket) => {
   });
 });
 const PORT = process.env.PORT || 5000;
+console.log(process.env.PORT,"port")
 io.listen(PORT);
