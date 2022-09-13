@@ -1,4 +1,4 @@
-import { Server } from "socket.io";
+import { Server } from "socket.io"; 
 
 const io = new Server({
   cors: {
@@ -29,6 +29,8 @@ console.log(onlineUsers,"onlineusers")
 };
 
 io.on("connection", (socket) => {
+  console.log("hello")
+  setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
   socket.on("newUser", (username) => {
     addNewUser(username, socket.id);
   });
@@ -56,5 +58,5 @@ io.on("connection", (socket) => {
     removeUser(socket.id);
   });
 });
-
-io.listen(5000);
+const PORT = process.env.PORT || 5000;
+io.listen(PORT);
