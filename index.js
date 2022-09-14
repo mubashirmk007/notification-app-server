@@ -30,7 +30,7 @@ console.log(onlineUsers,"onlineusers")
 };
 
 io.on("connection", (socket) => {
-  console.log("hello")
+  
   setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
   socket.on("newUser", (username) => {
     addNewUser(username, socket.id);
@@ -44,6 +44,7 @@ io.on("connection", (socket) => {
       senderName,
       type,
     });
+    console.log(senderName,"sendername")
   });
 
   socket.on("sendText", ({ senderName, receiverName, text }) => {
